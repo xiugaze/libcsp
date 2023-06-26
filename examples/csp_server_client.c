@@ -23,7 +23,8 @@ int client_start(void);
 /* Server port, the port the server listens on for incoming connections from the client. */
 #define MY_SERVER_PORT		10
 #define LOCALHOST "127.0.0.1"
-#define TEST_PORT 8080
+#define RPORT 8080
+#define LPORT 8090
 
 /* Commandline options */
 static uint8_t server_address = 255;
@@ -233,13 +234,13 @@ int main(int argc, char * argv[]) {
         udp_iface = (csp_iface_t*)malloc(sizeof(csp_iface_t));
         csp_if_udp_conf_t conf = {
             .host = LOCALHOST,
-            .lport = TEST_PORT,
-            .rport = TEST_PORT,
+            .lport = LPORT,
+            .rport = RPORT,
             .server_handle = NULL,
             .peer_addr = {
                 .sin_addr.s_addr = inet_addr(LOCALHOST),
                 .sin_family = AF_INET,
-                .sin_port = TEST_PORT,
+                .sin_port = RPORT,
             }
         };
         csp_if_udp_init(udp_iface, &conf);
